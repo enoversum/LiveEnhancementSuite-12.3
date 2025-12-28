@@ -678,7 +678,7 @@ if (enableclosewindow = 1){
 Hotkey, ^w, closewindow
 Hotkey, ^!w, closeall
 }
-Hotkey, ^b, buplicate
+Hotkey, ^+b, buplicate
 
 ; Hotkey, ^+h, directshyper
 ;Hotkey, !g, debugshortcut
@@ -1741,7 +1741,7 @@ return
 ;Return
 
 buplicate: ;brought to you by dylan tallchief
-if (A_PriorHotkey != "^b" or A_TimeSincePriorHotkey > 1800 or A_PriorKey = Lbutton)
+if (A_PriorHotkey != "^+b" or A_TimeSincePriorHotkey > 1800 or A_PriorKey = Lbutton)
 {
     ; Too much time between presses, so this isn't a double-press.
 send {ctrl down}{d 7}{ctrl up}
