@@ -1120,12 +1120,34 @@ Loop
 		}
 	}
 	else{
-	if (querycount = "") ;counting in order to figure out if config output is a menu item name or a search query
+		if (querycount = "")
 		{
-		querycount := 0
+			querycount := 0
 		}
 		querycount := querycount + 1
-		queryname%querycount% := Array[mathvar]
+
+		; raw search line from ini
+		searchline := Array[mathvar]
+
+		; detect and strip flags
+		close_after_load%querycount% := 0
+		fold_after_load%querycount% := 0
+		searchline_trim := Trim(searchline)
+
+		; -close flag
+		if InStr(searchline_trim, " -close") {
+			close_after_load%querycount% := 1
+			searchline_trim := StrReplace(searchline_trim, " -close", "")
+		}
+
+		; -fold flag (new)
+		if InStr(searchline_trim, " -fold") {
+			fold_after_load%querycount% := 1
+			searchline_trim := StrReplace(searchline_trim, " -fold", "")
+		}
+
+		queryname%querycount% := searchline_trim
+
 	}
 
 	skipalles:
@@ -1156,6 +1178,7 @@ Return
 ;-----------------------------------;
 
 openplugin: ;you would think consistently typing something in the ableton search bar would be easy
+
 loop, 1{
     ; Open browser search
     Send,{ctrl down}{f}{ctrl up}
@@ -1237,6 +1260,43 @@ loop, 1{
     Else{
         SetTitleMatchMode, 2
     }
+
+	; FOLD device in device chain if -fold is added as parameter
+	; Using hacky 2x Ctrl+Alt+4 to make sure device's title bar is focused
+	if (fold_after_load = 1) {
+		Sleep, 250  
+		SetTitleMatchMode, 2
+		WinActivate, Ableton
+		WinWaitActive, Ableton, , 1
+		
+		Send, ^!4
+		Sleep, 150
+		Send, ^!4
+		Sleep, 200
+		Send, {-}
+		Sleep, 100
+	}
+
+	; CLOSE device window if -close parameter present
+	; VST2 and VST3 only, to avoid mishaps
+	if (close_after_load = 1) {
+		WinWait, ahk_class Vst3PlugWindow, , 1
+		|| WinWait, ahk_class AbletonVstPlugClass, , 1  
+		
+		WinGet, vst3Count, Count, ahk_class Vst3PlugWindow
+		if (vst3Count > 0) {
+			WinClose, ahk_class Vst3PlugWindow   ; VST3 window close
+		} else {
+			WinClose, ahk_class AbletonVstPlugClass	; VST2 window close
+		}
+
+		; SAFETY NET: Fallback poll if missed
+		Sleep, 500
+		if WinExist("ahk_class Vst3PlugWindow") || WinExist("ahk_class AbletonVstPlugClass") {
+			WinClose, ahk_class Vst3PlugWindow
+			|| WinClose, ahk_class AbletonVstPlugClass
+		}
+	}
 
     skipautoadd:
     piss :=  ;
