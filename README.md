@@ -11,18 +11,18 @@
 
 Example entry for a plugin:
 
-  Arturia Pigments
-  Pigments vst3 -close
+    Arturia Pigments
+    Pigments vst3 -close
   
 _Pigments closes after loading_
 
-  Arturia Pigments
-  Pigments vst3 -fold
+    Arturia Pigments
+    Pigments vst3 -fold
   
 _Pigments' window in device view folds after loading_
 
-  Arturia Pigments
-  Pigments vst3 -close -fold
+    Arturia Pigments
+    Pigments vst3 -close -fold
   
 _Pigments closes and folds after loading_
 
