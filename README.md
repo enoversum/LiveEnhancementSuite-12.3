@@ -13,14 +13,17 @@ Example entry for a plugin:
 
   Arturia Pigments
   Pigments vst3 -close
+  
 _Pigments closes after loading_
 
   Arturia Pigments
   Pigments vst3 -fold
+  
 _Pigments' window in device view folds after loading_
 
   Arturia Pigments
   Pigments vst3 -close -fold
+  
 _Pigments closes and folds after loading_
 
 This is an update to make LES work great again *cough* on Live 12.3, mainly for my own use, but hopefully beneficial for others as well. I'm not a proper AHK developer. But please let me know if you're facing any issues, especially with the new `-fold` and `-close` functionality, which might break on heavier Live sets and/or weaker machines. 
