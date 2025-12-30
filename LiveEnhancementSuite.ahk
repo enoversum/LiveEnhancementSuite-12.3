@@ -10,13 +10,13 @@ Created_Date=1
 Set_Version_Info=1
 Company_Name=Inverted Silence & Dylan Tallchief
 File_Description=Live Enhancement Suite
-File_Version=0.1.3.3
+File_Version=0.1.4.1
 Inc_File_Version=0
 Internal_Name=Live Enhancement Suite
 Legal_Copyright=© 2019
 Original_Filename=Live Enhancement Suite
 Product_Name=Live Enhancement Suite
-Product_Version=0.1.3.2
+Product_Version=0.1.4.1
 [ICONS]
 Icon_1=%In_Dir%\resources\blueico.ico
 Icon_2=%In_Dir%\resources\blueico.ico
@@ -1690,7 +1690,7 @@ if(InStr(WinTitle, "Ableton Live 11") != 0){
 else if(InStr(WinTitle, "Ableton Live 12")){
 	Click, Right
 	sleep, 20
-	SendInput {down 14}{enter}{delete} 
+	SendInput {down 13}{enter}{delete} 
 	; 'Select track content' has moved further down in the menu
 }
 else if(InStr(WinTitle, "Ableton")){
