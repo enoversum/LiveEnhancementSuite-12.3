@@ -7,7 +7,7 @@
 * **Buplicate** has a new shortcut (Ctrl + Shift + B) to allow for Bouncing to new track via Ctrl + B.
 
 ## New features:
-* **Close and fold:** Closing the window after loading the device (VST2/VST3 only), and folding the mini window in the device chain at the bottom. Can be used together or singular. Just add ` -close` and/or ` -fold` (with a leading space) to the second line of your entries in `menuconfig.ini`. Both are optional. 
+* **Close and fold:** Closing the window after loading the device (VST2/VST3 only), and folding the mini window in the device chain at the bottom. Can be used together or individually. Just add ` -close` and/or ` -fold` (with a leading space) to the second line of your entries in `menuconfig.ini`. Both are optional. 
 
 Example entry for a plugin:
 
