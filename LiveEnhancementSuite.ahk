@@ -1226,13 +1226,10 @@ loop, 1{
     MouseGetPos, posX, posY
 	If (resetbrowsertobookmark = 1){
 		; Give Live a moment after loading the device before toggling the browser
-		Sleep, 120   ; you can tweak this if needed
+		Sleep, 120
 
 		; Toggle Browser (or bring it back into view) instead of clicking by coordinates
 		Send, ^!b  ; Ctrl + Alt + B in AHK syntax
-
-		; Optional: restore mouse position (kept for consistency, though no click now)
-		MouseMove, posX, posY, 0
 	}
 
 
@@ -1693,7 +1690,8 @@ if(InStr(WinTitle, "Ableton Live 11") != 0){
 else if(InStr(WinTitle, "Ableton Live 12")){
 	Click, Right
 	sleep, 20
-	SendInput {down 13}{enter}{delete}
+	SendInput {down 14}{enter}{delete} 
+	; 'Select track content' has moved further down in the menu
 }
 else if(InStr(WinTitle, "Ableton")){
 	Click, Right
