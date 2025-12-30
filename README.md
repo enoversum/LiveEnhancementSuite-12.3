@@ -1,4 +1,4 @@
-# LiveEnhancementSuite-Live12
+# LiveEnhancementSuite 12.3
 **Live Enhancement Suite (LES) v1.3.5** updated for Live 12 with 3 new added keybinds (forked from jastro), better timings and new functionality.
 
 ## Improvements: 
