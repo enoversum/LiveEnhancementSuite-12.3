@@ -8,7 +8,8 @@
 * **Clear track** (remove all clips from currently hovered track) via Alt+X is now working in Live 12.3 again. Due to AHK not being able to determine the exact point release version, this will not work Live 12.x versions before 12.3. 
 
 ## New features:
-* **Close and fold:** Closing the window after loading the device (VST2/VST3 only), and folding the mini window in the device chain at the bottom. Can be used together or individually. Just add ` -close` and/or ` -fold` (with a leading space) to the second line of your entries in `menuconfig.ini`. Both are optional. 
+* **Close and fold:** Closing the window after loading the device (VST2/VST3 only), and folding the mini window in the device chain at the bottom. Can be used together or individually. Just add ` -close` and/or ` -fold` (with a leading space) to the second line of your entries in `menuconfig.ini`. Both are optional.
+    * `-close` can be overridden when loading a plugin by holding the Shift button while clicking the corresponding menu item. 
 
 Example entry for a plugin:
 
@@ -27,6 +28,6 @@ _Pigments' window in device view folds after loading_
   
 _Pigments closes and folds after loading_
 
-This is an update to make LES work great again *cough* on Live 12.3, mainly for my own use, but hopefully beneficial for others as well. I'm not a proper AHK developer. But please let me know if you're facing any issues, especially with the new `-fold` and `-close` functionality, which might break on heavier Live sets and/or weaker machines. 
+This is an update to make LES work great again *cough* on Live 12.3 and above. Mainly for my own use, but hopefully beneficial for others as well. I'm not a proper AHK developer. But please let me know if you're facing any issues, especially with the new `-fold` and `-close` functionality, which might break on heavier Live sets and/or weaker machines. 
 
 Link to original: https://github.com/LiveEnhancementSuite/LESforWindows
