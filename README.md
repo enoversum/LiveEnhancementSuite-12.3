@@ -1,5 +1,5 @@
 # LiveEnhancementSuite Plus
-**Live Enhancement Suite (LES)** updated for Live 12.3+ with 3 new added keybinds, better timings and new functionality.
+**Live Enhancement Suite (LES) for Windows** updated for Live 12.3+ with 3 new added keybinds, better timings and new functionality.
 
 ## Improvements: 
 * Compatible with Live 12.3 and above via **improved right-click menu search routine** that works again with better timings.
