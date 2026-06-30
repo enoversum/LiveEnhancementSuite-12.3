@@ -6,6 +6,7 @@
 * The optional **closing of the browser** after a search is now realised via the _Ctrl + Alt + B_ shortcut instead of previously via mouse click with coordinates (which tended to fail). The setting for this (resetbrowsertobookmark) is still respected, coordinates aren't.
 * **Buplicate** has a new shortcut (Ctrl + Shift + B) to allow for Bouncing to new track via Ctrl + B.
 * **Clear track** (remove all clips from currently hovered track) via Alt+X is now working in Live 12.3 again. Due to AHK not being able to determine the exact point release version, this will not work Live 12.x versions before 12.3. 
+* **Improved performance**: Let LES check against actual changes of `menuconfig.ini` instead of rebuilding the right-click menu every single time. Especially with icons (see below), this now feels instant. 
 
 ## New features:
 * **Icons:** Add icons to the left-hand column for select (or all) menu items. 
