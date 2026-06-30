@@ -281,8 +281,12 @@ Loop, Read, %A_ScriptDir%\settings.ini
 
 	line := StrReplace(A_LoopReadLine, "`r", "")
 	line := StrReplace(line, "`n", "")
+	line := Trim(line)
+	if (line = "" or SubStr(line, 1, 1) = ";"){
+		continue
+	}
 
-	if (RegExMatch(line, "autoadd\s=\s") != 0){
+	if (RegExMatch(line, "^\s*autoadd\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "autoadd" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -292,7 +296,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	autoadd := result[2]
 	}
 	
-	if (RegExMatch(line, "resetbrowsertobookmark\s=\s") != 0){
+	if (RegExMatch(line, "^\s*resetbrowsertobookmark\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "resetbrowsertobookmark" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -302,7 +306,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	resetbrowsertobookmark := result[2]
 	}
 	
-	if (RegExMatch(line, "bookmarkx\s=\s") != 0){
+	if (RegExMatch(line, "^\s*bookmarkx\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 		if !(RegExReplace(result[2], "[0-9]") = ""){
 		msgbox % "Invalid parameter for " . Chr(34) "bookmarkx" . Chr(34) . ": the specified parameter is not a number. The program will shut down now."
@@ -312,7 +316,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	bookmarkx := result[2]
 	}
 	
-	if (RegExMatch(line, "bookmarky\s=\s") != 0){
+	if (RegExMatch(line, "^\s*bookmarky\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 		if !(RegExReplace(result[2], "[0-9]") = ""){
 		msgbox % "Invalid parameter for " . Chr(34) "bookmarky" . Chr(34) . ": the specified parameter is not a number. The program will shut down now."
@@ -322,7 +326,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	bookmarky := result[2]
 	}
 	
-	if (RegExMatch(line, "windowedcompensationpx\s=\s") != 0){
+	if (RegExMatch(line, "^\s*windowedcompensationpx\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 		if !(RegExReplace(result[2], "[0-9]") = ""){
 		msgbox % "Invalid parameter for " . Chr(34) "windowedcompensationpx" . Chr(34) . ": the specified parameter is not a number. The program will shut down now."
@@ -332,7 +336,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	windowedcompensationpx := result[2]
 	}
 	
-	if (RegExMatch(line, "disableloop\s=\s") != 0){
+	if (RegExMatch(line, "^\s*disableloop\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "disableloop" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -342,7 +346,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	disableloop := result[2]
 	}
 	
-	if (RegExMatch(line, "saveasnewver\s=\s") != 0){
+	if (RegExMatch(line, "^\s*saveasnewver\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "saveasnewver" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -352,7 +356,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	saveasnewver := result[2]
 	}
 	
-	if (RegExMatch(line, "usectrlaltsinstead\s=\s") != 0){
+	if (RegExMatch(line, "^\s*usectrlaltsinstead\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "usectrlaltsinstead" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -362,7 +366,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	usectrlaltsinstead := result[2]
 	}
 	
-	if (RegExMatch(line, "altgrmarker\s=\s") != 0){
+	if (RegExMatch(line, "^\s*altgrmarker\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "altgrmarker" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -382,7 +386,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	; middleclicktopan := result[2]
 	; }
 	
-	if (RegExMatch(line, "scrollspeed\s=\s") != 0){
+	if (RegExMatch(line, "^\s*scrollspeed\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(RegExReplace(result[2], "[0-9]") = ""){
 		msgbox % "Invalid parameter for " . Chr(34) "scrollspeed" . Chr(34) . ". The specified parameter is not a number. The program will shut down now."
@@ -392,7 +396,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	scrollspeed := floor(result[2])
 	}
 	
-	if (RegExMatch(line, "addctrlshiftz\s=\s") != 0){
+	if (RegExMatch(line, "^\s*addctrlshiftz\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "addctrlshiftz" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -402,7 +406,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	addctrlshiftz := result[2]
 	}
 	
-	if (RegExMatch(line, "0todelete\s=\s") != 0){
+	if (RegExMatch(line, "^\s*0todelete\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "0todelete" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -412,7 +416,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	0todelete := result[2]
 	}
 	
-	if (RegExMatch(line, "absolutereplace\s=\s") != 0){
+	if (RegExMatch(line, "^\s*absolutereplace\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "absolutereplace" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -422,7 +426,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	absolutereplace := result[2]
 	}
 	
-	if (RegExMatch(line, "enableclosewindow\s=\s") != 0){
+	if (RegExMatch(line, "^\s*enableclosewindow\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "enableclosewindow" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -432,7 +436,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	enableclosewindow := result[2]
 	}
 	
-	if (RegExMatch(line, "vstshortcuts\s=\s") != 0){
+	if (RegExMatch(line, "^\s*vstshortcuts\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "vstshortcuts" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -454,7 +458,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 ;	superspeedmode := result[2]
 ;	}
 	
-	if (RegExMatch(line, "smarticon\s=\s") != 0){
+	if (RegExMatch(line, "^\s*smarticon\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "smarticon" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -464,7 +468,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	smarticon := result[2]
 	}
 	
-	if (RegExMatch(line, "dynamicreload\s=\s") != 0){
+	if (RegExMatch(line, "^\s*dynamicreload\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "dynamicreload" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -475,7 +479,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	}
 
 	; Read icons enabling setting if present
-	if (RegExMatch(line, "enableicons\s=\s") != 0){
+	if (RegExMatch(line, "^\s*enableicons\s*=") != 0){
         result := StrSplit(line, "=", A_Space)
         if !(result[2] = 0 or result[2] = 1){
             msgbox % "Invalid parameter for " . Chr(34) "enableicons" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -485,7 +489,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
         enableicons := result[2]
     }
 	
-	if (RegExMatch(line, "pianorollmacro\s=\s") != 0){
+	if (RegExMatch(line, "^\s*pianorollmacro\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if ((RegExMatch(line, "SC\d\d") = 0)){
 		msgbox % "Invalid parameter for " . Chr(34) "pianorollmacro" . Chr(34) . ". This needs to be a keycode starting with SC. The program will shut down now."
@@ -495,7 +499,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	pianorollmacro := result[2]
 	}
 	
-	if (RegExMatch(line, "pianosearch\s=\s") != 0){
+	if (RegExMatch(line, "^\s*pianosearch\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "pianosearch" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -505,7 +509,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	pianosearch := result[2]
 	}
 	
-	if (RegExMatch(line, "enabledebug\s=\s") != 0){
+	if (RegExMatch(line, "^\s*enabledebug\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "enabledebug" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -515,7 +519,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	enabledebug := result[2]
 	}
 	
-	if (RegExMatch(line, "addtostartup\s=\s") != 0){
+	if (RegExMatch(line, "^\s*addtostartup\s*=") != 0){
 	result := StrSplit(line, "=", A_Space)
 	if !(result[2] = 0 or result[2] = 1){
 		msgbox % "Invalid parameter for " . Chr(34) "addtostartup" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -525,7 +529,7 @@ Loop, Read, %A_ScriptDir%\settings.ini
 	addtostartup := result[2]
 	}
 	
-	if (RegExMatch(line, "fliptabfunction\s=\s") != 0){
+	if (RegExMatch(line, "^\s*fliptabfunction\s*=") != 0){
 		result := StrSplit(line, "=", A_Space)
 		if !(result[2] = 0 or result[2] = 1){
 			msgbox % "Invalid parameter for " . Chr(34) "fliptabfunction" . Chr(34) . ". Valid parameters are: 1 and 0. The program will shut down now."
@@ -553,7 +557,7 @@ gosub, settingsinibad
 ; I never bothered to make a dynamic settings.ini file updater. Or some UI thing that would make this entire process more convoluted.
 ; Things like LES 1.2 and 1.3 were never supposed to happen so I didn't account for them - these are the crappy workarounds.
 
-if ((dynamicreload = "") or (altgrmarker = "") or (enableclosewindow = "") or (vstshortcuts = "") or (scrollspeed = "") or (fliptabfunction = ""))
+if ((dynamicreload = "") or (altgrmarker = "") or (enableclosewindow = "") or (vstshortcuts = "") or (scrollspeed = "") or (fliptabfunction = "")){
 Msgbox, 4, Oops!, % "It seems your settings.ini file is from an older version of LES.`nYou won't be able to use some of the new features added to the settings without restoring your settings.ini file to its default state. It is recommended you make a backup before you do. This won't reset your menu. Reset settings?"
 IfMsgBox Yes
 	{
@@ -599,6 +603,7 @@ IfMsgBox Yes
 	settimer, tooltipboi, 1
 	Sleep, 2
 	}
+}
 	
 if (scrollspeed = ""){ ;prevents error from empty variable, in case the user didn't want to reset their settings.ini file during an update
 	scrollspeed := 1
@@ -857,7 +862,7 @@ if (pianosearch = 1){
 			Return
 			}
 		if (dynamicreload = 1){
-			gosub, createpluginmenu
+			gosub, maybeReloadPluginMenu
 		}
 		Menu, ALmenu, Show, % MX, % MY
 		Return
@@ -871,14 +876,14 @@ if (pianosearch = 1){
 			Return
 			}
 		if (dynamicreload = 1){
-			gosub, createpluginmenu
+			gosub, maybeReloadPluginMenu
 		}
 		Menu, ALmenu, Show, % MX, % MY
 		Return
 	}
 	Else{
 	if (dynamicreload = 1){
-		gosub, createpluginmenu
+		gosub, maybeReloadPluginMenu
 	}
 	Menu, ALmenu, Show, % MX, % MY
 	}
@@ -888,7 +893,7 @@ if (pianosearch = 0){
     if (GetKeyState("LShift") = 0){
         ; only rebuild if dynamicreload is enabled
         if (dynamicreload = 1){
-            gosub, createpluginmenu
+            gosub, maybeReloadPluginMenu
         }
         Menu, ALmenu, Show, % MX, % MY
     }
@@ -970,6 +975,17 @@ Return
 ; If I ever decide to overhaul this (or if someone else does), I would try to make a converter that can convert people's old configurations into a new syntax, along with the update.
 ; Seriously, I've seen people add a thousand items. That must take for ever...
 
+maybeReloadPluginMenu:
+FileGetTime, currentMenuConfigTime, %A_ScriptDir%\menuconfig.ini, M
+if (ErrorLevel = 1){
+	gosub, createpluginmenu
+	Return
+}
+if (lastMenuConfigTime != currentMenuConfigTime){
+	gosub, createpluginmenu
+}
+Return
+
 createpluginmenu:
 
 ; this thing over here clears out all variables and folders from memory before rebuilding to prevent double entries while using dynamic reload.
@@ -989,7 +1005,6 @@ if (menuitemcount != ""){
     counter := ""
     outputcount := ""
     historyi := ""
-    iconPathCache := ""
     table := trimArray(table)
     loop {
         if (historyi = ""){
@@ -1014,16 +1029,14 @@ categoryname := Array()
 categorylabel := Array()
 categoryicon := Array()
 categorymenuid := Array()
-iconPathCache := {}
+if !IsObject(iconPathCache)
+	iconPathCache := {}
 categorydest[1] := "ALmenu"
 depth := 1
-Loop
+Loop, Read, %A_ScriptDir%\menuconfig.ini
 	{
-	if (mathvar = "") ;if the counter is non existent, make it 1. The counter keeps tracks of the line count. Didn't know you could use 'loop, read' for this until after I was done with it.
-		{
-		Mathvar := 1
-		}
-	FileReadLine, configoutput, menuconfig.ini, mathvar
+	mathvar := A_Index ; line number, used for stable menu item/category ids
+	configoutput := A_LoopReadLine
 	if (configoutput = ""){ ;checks if string is empty
 		goto, skipalles
 		}
@@ -1209,7 +1222,6 @@ Loop
 	}
 
 	skipalles:
-	mathvar := mathvar + 1
 	}
 goto klaar
 
@@ -1229,6 +1241,7 @@ goto klaar
 
 }
 klaar:
+FileGetTime, lastMenuConfigTime, %A_ScriptDir%\menuconfig.ini, M
 Return
 
 ;-----------------------------------;
@@ -1339,7 +1352,9 @@ loop, 1{
     ; VST2 and VST3 only, to avoid mishaps
     if (close_after_load = 1 && !ignore_close_this_load) {
         WinWait, ahk_class Vst3PlugWindow, , 1
-        || WinWait, ahk_class AbletonVstPlugClass, , 1
+        if (ErrorLevel) {
+            WinWait, ahk_class AbletonVstPlugClass, , 1
+        }
 
         WinGet, vst3Count, Count, ahk_class Vst3PlugWindow
         if (vst3Count > 0) {
@@ -1349,9 +1364,11 @@ loop, 1{
         }
 
         Sleep, 500
-        if WinExist("ahk_class Vst3PlugWindow") || WinExist("ahk_class AbletonVstPlugClass") {
+        if WinExist("ahk_class Vst3PlugWindow") {
             WinClose, ahk_class Vst3PlugWindow
-            || WinClose, ahk_class AbletonVstPlugClass
+        }
+        else if WinExist("ahk_class AbletonVstPlugClass") {
+            WinClose, ahk_class AbletonVstPlugClass
         }
     }
 
@@ -1653,7 +1670,7 @@ send {delete}
 return
 
 redo:
-if(vstshortcuts := 1){
+if(vstshortcuts = 1){
 gosub, VSTredo
 }
 else{
